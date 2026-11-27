@@ -1,0 +1,70 @@
+	html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #0a1622; }
+	#app, #app canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+	body { font-family: ui-sans-system, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #e8f2f8; }
+
+	#loader { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+		background: radial-gradient(120% 100% at 50% 20%, #14324a 0%, #0a1622 70%); text-align: center; padding: 24px; }
+	#loader .brand { font-size: 30px; font-weight: 700; letter-spacing: 0.28em; text-indent: 0.28em; }
+	#loader .tag { font-size: 13px; color: #9fc3d8; letter-spacing: 0.08em; }
+	#loader-text { font-size: 13px; color: #cfe6f2; max-width: 520px; line-height: 1.55; }
+
+	/* island29-style chrome: round menu button top-left, HUD hidden by default */
+	#menu-btn { position: fixed; top: 12px; left: 12px; z-index: 55; width: 42px; height: 42px; border-radius: 50%;
+		background: rgba(8, 18, 28, 0.62); color: #e8f2f8; border: 1px solid rgba(160, 200, 225, 0.35);
+		font-size: 19px; line-height: 1; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+	#hud { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
+	#hud button { pointer-events: auto; }
+	.hud-top { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); }
+	.hud-modes { display: flex; gap: 6px; background: rgba(8, 18, 28, 0.62); border: 1px solid rgba(160, 200, 225, 0.22);
+		border-radius: 999px; padding: 5px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+	.hud-modes button { background: transparent; color: #dceef8; border: 0; border-radius: 999px; padding: 7px 18px;
+		font-size: 13.5px; font-weight: 600; cursor: pointer; }
+	.hud-modes button.on { background: #2e7fb8; color: #fff; }
+	.hud-side { position: absolute; top: 66px; left: 12px; width: 232px; max-height: calc(100vh - 84px); overflow-y: auto;
+		background: rgba(8, 18, 28, 0.62);
+		border: 1px solid rgba(160, 200, 225, 0.22); border-radius: 14px; padding: 10px 12px; pointer-events: auto;
+		backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+	.hud-group-label { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8fb8cf; margin-bottom: 5px; }
+	.hud-side .hud-group-label:not(:first-child) { margin-top: 13px; }
+	.hud-quality, .hud-presets, .hud-speed { display: flex; gap: 5px; }
+	.hud-quality button, .hud-presets button, .hud-speed button { flex: 1; background: rgba(255,255,255,0.07); color: #dceef8; border: 1px solid rgba(160,200,225,0.18);
+		border-radius: 8px; padding: 6px 2px; font-size: 12px; cursor: pointer; }
+	.hud-quality button.on, .hud-presets button.on, .hud-speed button.on { background: #2e7fb8; border-color: #57a8d8; color: #fff; }
+	.hud-presets button, .hud-speed button { font-size: 11px; padding: 6px 1px; }
+	.hud-speed { margin-top: 5px; }
+	.hud-wide-btn { width: 100%; margin-top: 5px; background: rgba(255,255,255,0.07); color: #dceef8; border: 1px solid rgba(160,200,225,0.18);
+		border-radius: 8px; padding: 7px 2px; font-size: 12px; cursor: pointer; }
+	.hud-wide-btn.on { background: #2e7fb8; border-color: #57a8d8; color: #fff; }
+	.hud-slider { margin: 6px 0 2px; }
+	.hud-slider label { display: flex; justify-content: space-between; align-items: baseline; font-size: 11.5px; color: #cfe6f2; margin-bottom: 1px; }
+	.hud-slider .hud-val { color: #8fb8cf; font-variant-numeric: tabular-nums; font-size: 11.5px; }
+	.hud-slider input[type="range"] { width: 100%; height: 26px; margin: 0; padding: 0; background: transparent; accent-color: #2e7fb8; cursor: pointer; pointer-events: auto; }
+	.hud-note { font-size: 11px; color: #a8d4ef; margin-top: 5px; }
+	.hud-note:empty { display: none; }
+	.hud-hint { font-size: 11px; color: #87a9bd; line-height: 1.55; margin-top: 10px; }
+
+	#hud-prompt { position: fixed; left: 50%; bottom: 128px; transform: translateX(-50%); z-index: 45;
+		background: rgba(8, 18, 28, 0.72); color: #eaf6ff; border: 1px solid rgba(160, 200, 225, 0.35); border-radius: 999px;
+		padding: 9px 20px; font-size: 14px; font-weight: 600; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+	#hud-gauge { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 45; display: flex; align-items: baseline; gap: 5px;
+		background: rgba(8, 18, 28, 0.62); border: 1px solid rgba(160, 200, 225, 0.25); border-radius: 999px; padding: 7px 16px;
+		backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+	#hud-gauge strong { font-size: 19px; font-variant-numeric: tabular-nums; }
+	#hud-gauge small { font-size: 11px; color: #9fc3d8; }
+	.hud-thr { position: relative; display: inline-block; width: 74px; height: 7px; border-radius: 4px; background: rgba(255,255,255,0.14); margin-left: 8px; align-self: center; overflow: hidden; }
+	.hud-thr i { position: absolute; top: 0; height: 100%; background: #57a8d8; }
+	.hud-thr::after { content: ""; position: absolute; left: 50%; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.5); }
+
+	/* play controls — never hidden with the HUD */
+	#joystick { position: fixed; left: 18px; bottom: 18px; z-index: 40; width: 112px; height: 112px; border-radius: 50%;
+		background: rgba(10, 22, 34, 0.35); border: 1.5px solid rgba(190, 220, 240, 0.35); touch-action: none; }
+	.joy-knob { position: absolute; left: 50%; top: 50%; width: 48px; height: 48px; border-radius: 50%;
+		background: rgba(220, 240, 250, 0.4); border: 1.5px solid rgba(230, 245, 255, 0.6); transform: translate(-50%, -50%); pointer-events: none; }
+	#btn-run { position: fixed; right: 18px; bottom: 34px; z-index: 40; width: 62px; height: 62px; border-radius: 50%;
+		background: rgba(10, 22, 34, 0.4); color: #eaf6ff; border: 1.5px solid rgba(190, 220, 240, 0.4); font-size: 26px; cursor: pointer; touch-action: none; }
+	#btn-run.held { background: #2e7fb8; }
+	#boat-pads { position: fixed; inset: auto 0 18px 0; z-index: 40; display: flex; justify-content: space-between; padding: 0 18px; pointer-events: none; }
+	#boat-pads .pad-left, #boat-pads .pad-right { display: flex; gap: 10px; pointer-events: auto; }
+	#boat-pads button { width: 62px; height: 62px; border-radius: 50%; background: rgba(10, 22, 34, 0.4); color: #eaf6ff;
+		border: 1.5px solid rgba(190, 220, 240, 0.4); font-size: 22px; cursor: pointer; touch-action: none; }
+	#boat-pads button.held { background: #2e7fb8; }
